@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="bwslb2ModelStoreContainer" CdmEntityContainer="bwslb2Entities">
+    <EntitySetMapping Name="b2_building_info">
+      <EntityTypeMapping TypeName="bwslb2Model.b2_building_info">
+        <MappingFragment StoreEntitySet="b2_building_info">
+          <ScalarProperty Name="building_id" ColumnName="building_id" />
+          <ScalarProperty Name="building_name" ColumnName="building_name" />
+          <ScalarProperty Name="company" ColumnName="company" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="b2_buyer_info">
+      <EntityTypeMapping TypeName="bwslb2Model.b2_buyer_info">
+        <MappingFragment StoreEntitySet="b2_buyer_info">
+          <ScalarProperty Name="buyer_id" ColumnName="buyer_id" />
+          <ScalarProperty Name="buyer" ColumnName="buyer" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="execution_time" ColumnName="execution_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="b2_company_info">
+      <EntityTypeMapping TypeName="bwslb2Model.b2_company_info">
+        <MappingFragment StoreEntitySet="b2_company_info">
+          <ScalarProperty Name="company_id" ColumnName="company_id" />
+          <ScalarProperty Name="company_name" ColumnName="company_name" />
+          <ScalarProperty Name="company_name_bangla" ColumnName="company_name_bangla" />
+          <ScalarProperty Name="company_address" ColumnName="company_address" />
+          <ScalarProperty Name="company_address_bangla" ColumnName="company_address_bangla" />
+          <ScalarProperty Name="company_logo" ColumnName="company_logo" />
+          <ScalarProperty Name="execution_time" ColumnName="execution_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="b2_emp_basic">
+      <EntityTypeMapping TypeName="bwslb2Model.b2_emp_basic">
+        <MappingFragment StoreEntitySet="b2_emp_basic">
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="emp_cardno" ColumnName="emp_cardno" />
+          <ScalarProperty Name="emp_name" ColumnName="emp_name" />
+          <ScalarProperty Name="section" ColumnName="section" />
+          <ScalarProperty Name="designation" ColumnName="designation" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="b2_process_info">
+      <EntityTypeMapping TypeName="bwslb2Model.b2_process_info">
+        <MappingFragment StoreEntitySet="b2_process_info">
+          <ScalarProperty Name="process_id" ColumnName="process_id" />
+          <ScalarProperty Name="section" ColumnName="section" />
+          <ScalarProperty Name="style" ColumnName="style" />
+          <ScalarProperty Name="process_name" ColumnName="process_name" />
+          <ScalarProperty Name="last_process" ColumnName="last_process" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="b2_production_information">
+      <EntityTypeMapping TypeName="bwslb2Model.b2_production_information">
+        <MappingFragment StoreEntitySet="b2_production_information">
+          <ScalarProperty Name="prod_id" ColumnName="prod_id" />
+          <ScalarProperty Name="prod_date" ColumnName="prod_date" />
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="style" ColumnName="style" />
+          <ScalarProperty Name="process" ColumnName="process" />
+          <ScalarProperty Name="prod_quantity" ColumnName="prod_quantity" />
+          <ScalarProperty Name="c_time" ColumnName="c_time" />
+          <ScalarProperty Name="u_time" ColumnName="u_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="b2_section_info">
+      <EntityTypeMapping TypeName="bwslb2Model.b2_section_info">
+        <MappingFragment StoreEntitySet="b2_section_info">
+          <ScalarProperty Name="section_id" ColumnName="section_id" />
+          <ScalarProperty Name="section" ColumnName="section" />
+          <ScalarProperty Name="manpower" ColumnName="manpower" />
+          <ScalarProperty Name="execution_time" ColumnName="execution_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="b2_style_info">
+      <EntityTypeMapping TypeName="bwslb2Model.b2_style_info">
+        <MappingFragment StoreEntitySet="b2_style_info">
+          <ScalarProperty Name="style_id" ColumnName="style_id" />
+          <ScalarProperty Name="buyer" ColumnName="buyer" />
+          <ScalarProperty Name="section" ColumnName="section" />
+          <ScalarProperty Name="style" ColumnName="style" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="c_time" ColumnName="c_time" />
+          <ScalarProperty Name="u_time" ColumnName="u_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="b2_user_role">
+      <EntityTypeMapping TypeName="bwslb2Model.b2_user_role">
+        <MappingFragment StoreEntitySet="b2_user_role">
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="role_name" ColumnName="role_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="b2_users">
+      <EntityTypeMapping TypeName="bwslb2Model.b2_users">
+        <MappingFragment StoreEntitySet="b2_users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="user_role" ColumnName="user_role" />
+          <ScalarProperty Name="execution_time" ColumnName="execution_time" />
+          <ScalarProperty Name="section" ColumnName="section" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="building" ColumnName="building" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bwslb2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="b2_building_info">
+    <Key>
+      <PropertyRef Name="building_id" />
+    </Key>
+    <Property Name="building_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="building_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="company" Type="Int32" />
+    <NavigationProperty Name="b2_company_info" Relationship="Self.FK_b2_building_info_b2_company_info" FromRole="b2_building_info" ToRole="b2_company_info" />
+    <NavigationProperty Name="b2_users" Relationship="Self.FK_b2_users_b2_building_info" FromRole="b2_building_info" ToRole="b2_users" />
+  </EntityType>
+  <EntityType Name="b2_buyer_info">
+    <Key>
+      <PropertyRef Name="buyer_id" />
+    </Key>
+    <Property Name="buyer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="buyer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="execution_time" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="b2_style_info" Relationship="Self.FK_b2_style_info_b2_buyer_info" FromRole="b2_buyer_info" ToRole="b2_style_info" />
+  </EntityType>
+  <EntityType Name="b2_company_info">
+    <Key>
+      <PropertyRef Name="company_id" />
+    </Key>
+    <Property Name="company_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="company_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="company_name_bangla" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="company_address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="company_address_bangla" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="company_logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="execution_time" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="b2_building_info" Relationship="Self.FK_b2_building_info_b2_company_info" FromRole="b2_company_info" ToRole="b2_building_info" />
+  </EntityType>
+  <EntityType Name="b2_emp_basic">
+    <Key>
+      <PropertyRef Name="emp_id" />
+    </Key>
+    <Property Name="emp_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="emp_cardno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="emp_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="section" Type="Int32" Nullable="false" />
+    <Property Name="designation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Int32" />
+    <NavigationProperty Name="b2_section_info" Relationship="Self.FK_b2_emp_basic_section" FromRole="b2_emp_basic" ToRole="b2_section_info" />
+    <NavigationProperty Name="b2_production_information" Relationship="Self.FK_b2_production_information_emp_id" FromRole="b2_emp_basic" ToRole="b2_production_information" />
+  </EntityType>
+  <EntityType Name="b2_process_info">
+    <Key>
+      <PropertyRef Name="process_id" />
+    </Key>
+    <Property Name="process_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="section" Type="Int32" />
+    <Property Name="style" Type="Int32" />
+    <Property Name="process_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="last_process" Type="Int32" />
+    <NavigationProperty Name="b2_section_info" Relationship="Self.FK_b2_process_info_b2_section_info" FromRole="b2_process_info" ToRole="b2_section_info" />
+    <NavigationProperty Name="b2_style_info" Relationship="Self.FK_b2_process_info_b2_style_info" FromRole="b2_process_info" ToRole="b2_style_info" />
+    <NavigationProperty Name="b2_production_information" Relationship="Self.FK_b2_production_information_process" FromRole="b2_process_info" ToRole="b2_production_information" />
+  </EntityType>
+  <EntityType Name="b2_production_information">
+    <Key>
+      <PropertyRef Name="prod_id" />
+    </Key>
+    <Property Name="prod_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="prod_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="emp_id" Type="Int32" Nullable="false" />
+    <Property Name="style" Type="Int32" />
+    <Property Name="process" Type="Int32" />
+    <Property Name="prod_quantity" Type="Int32" Nullable="false" />
+    <Property Name="c_time" Type="DateTime" Precision="3" />
+    <Property Name="u_time" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="b2_emp_basic" Relationship="Self.FK_b2_production_information_emp_id" FromRole="b2_production_information" ToRole="b2_emp_basic" />
+    <NavigationProperty Name="b2_process_info" Relationship="Self.FK_b2_production_information_process" FromRole="b2_production_information" ToRole="b2_process_info" />
+    <NavigationProperty Name="b2_style_info" Relationship="Self.FK_b2_production_information_style" FromRole="b2_production_information" ToRole="b2_style_info" />
+  </EntityType>
+  <EntityType Name="b2_section_info">
+    <Key>
+      <PropertyRef Name="section_id" />
+    </Key>
+    <Property Name="section_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="section" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="manpower" Type="Int32" />
+    <Property Name="execution_time" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="b2_emp_basic" Relationship="Self.FK_b2_emp_basic_section" FromRole="b2_section_info" ToRole="b2_emp_basic" />
+    <NavigationProperty Name="b2_process_info" Relationship="Self.FK_b2_process_info_b2_section_info" FromRole="b2_section_info" ToRole="b2_process_info" />
+    <NavigationProperty Name="b2_style_info" Relationship="Self.FK_b2_style_info_b2_section_info" FromRole="b2_section_info" ToRole="b2_style_info" />
+    <NavigationProperty Name="b2_users" Relationship="Self.FK_b2_users_section" FromRole="b2_section_info" ToRole="b2_users" />
+  </EntityType>
+  <EntityType Name="b2_style_info">
+    <Key>
+      <PropertyRef Name="style_id" />
+    </Key>
+    <Property Name="style_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="buyer" Type="Int32" />
+    <Property Name="section" Type="Int32" />
+    <Property Name="style" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="c_time" Type="DateTime" Precision="3" />
+    <Property Name="u_time" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="b2_buyer_info" Relationship="Self.FK_b2_style_info_b2_buyer_info" FromRole="b2_style_info" ToRole="b2_buyer_info" />
+    <NavigationProperty Name="b2_process_info" Relationship="Self.FK_b2_process_info_b2_style_info" FromRole="b2_style_info" ToRole="b2_process_info" />
+    <NavigationProperty Name="b2_production_information" Relationship="Self.FK_b2_production_information_style" FromRole="b2_style_info" ToRole="b2_production_information" />
+    <NavigationProperty Name="b2_section_info" Relationship="Self.FK_b2_style_info_b2_section_info" FromRole="b2_style_info" ToRole="b2_section_info" />
+  </EntityType>
+  <EntityType Name="b2_user_role">
+    <Key>
+      <PropertyRef Name="role_id" />
+    </Key>
+    <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="role_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="b2_users" Relationship="Self.FK_b2_users_role" FromRole="b2_user_role" ToRole="b2_users" />
+  </EntityType>
+  <EntityType Name="b2_users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="user_role" Type="Int32" />
+    <Property Name="execution_time" Type="DateTime" Precision="3" />
+    <Property Name="section" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="building" Type="Int32" />
+    <NavigationProperty Name="b2_building_info" Relationship="Self.FK_b2_users_b2_building_info" FromRole="b2_users" ToRole="b2_building_info" />
+    <NavigationProperty Name="b2_section_info" Relationship="Self.FK_b2_users_section" FromRole="b2_users" ToRole="b2_section_info" />
+    <NavigationProperty Name="b2_user_role" Relationship="Self.FK_b2_users_role" FromRole="b2_users" ToRole="b2_user_role" />
+  </EntityType>
+  <Association Name="FK_b2_building_info_b2_company_info">
+    <End Role="b2_company_info" Type="Self.b2_company_info" Multiplicity="0..1" />
+    <End Role="b2_building_info" Type="Self.b2_building_info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2_company_info">
+        <PropertyRef Name="company_id" />
+      </Principal>
+      <Dependent Role="b2_building_info">
+        <PropertyRef Name="company" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_b2_users_b2_building_info">
+    <End Role="b2_building_info" Type="Self.b2_building_info" Multiplicity="0..1" />
+    <End Role="b2_users" Type="Self.b2_users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2_building_info">
+        <PropertyRef Name="building_id" />
+      </Principal>
+      <Dependent Role="b2_users">
+        <PropertyRef Name="building" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_b2_style_info_b2_buyer_info">
+    <End Role="b2_buyer_info" Type="Self.b2_buyer_info" Multiplicity="0..1" />
+    <End Role="b2_style_info" Type="Self.b2_style_info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2_buyer_info">
+        <PropertyRef Name="buyer_id" />
+      </Principal>
+      <Dependent Role="b2_style_info">
+        <PropertyRef Name="buyer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_b2_emp_basic_section">
+    <End Role="b2_section_info" Type="Self.b2_section_info" Multiplicity="1" />
+    <End Role="b2_emp_basic" Type="Self.b2_emp_basic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2_section_info">
+        <PropertyRef Name="section_id" />
+      </Principal>
+      <Dependent Role="b2_emp_basic">
+        <PropertyRef Name="section" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_b2_production_information_emp_id">
+    <End Role="b2_emp_basic" Type="Self.b2_emp_basic" Multiplicity="1" />
+    <End Role="b2_production_information" Type="Self.b2_production_information" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2_emp_basic">
+        <PropertyRef Name="emp_id" />
+      </Principal>
+      <Dependent Role="b2_production_information">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_b2_process_info_b2_section_info">
+    <End Role="b2_section_info" Type="Self.b2_section_info" Multiplicity="0..1" />
+    <End Role="b2_process_info" Type="Self.b2_process_info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2_section_info">
+        <PropertyRef Name="section_id" />
+      </Principal>
+      <Dependent Role="b2_process_info">
+        <PropertyRef Name="section" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_b2_process_info_b2_style_info">
+    <End Role="b2_style_info" Type="Self.b2_style_info" Multiplicity="0..1" />
+    <End Role="b2_process_info" Type="Self.b2_process_info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2_style_info">
+        <PropertyRef Name="style_id" />
+      </Principal>
+      <Dependent Role="b2_process_info">
+        <PropertyRef Name="style" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_b2_production_information_process">
+    <End Role="b2_process_info" Type="Self.b2_process_info" Multiplicity="0..1" />
+    <End Role="b2_production_information" Type="Self.b2_production_information" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2_process_info">
+        <PropertyRef Name="process_id" />
+      </Principal>
+      <Dependent Role="b2_production_information">
+        <PropertyRef Name="process" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_b2_production_information_style">
+    <End Role="b2_style_info" Type="Self.b2_style_info" Multiplicity="0..1" />
+    <End Role="b2_production_information" Type="Self.b2_production_information" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2_style_info">
+        <PropertyRef Name="style_id" />
+      </Principal>
+      <Dependent Role="b2_production_information">
+        <PropertyRef Name="style" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_b2_style_info_b2_section_info">
+    <End Role="b2_section_info" Type="Self.b2_section_info" Multiplicity="0..1" />
+    <End Role="b2_style_info" Type="Self.b2_style_info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2_section_info">
+        <PropertyRef Name="section_id" />
+      </Principal>
+      <Dependent Role="b2_style_info">
+        <PropertyRef Name="section" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_b2_users_section">
+    <End Role="b2_section_info" Type="Self.b2_section_info" Multiplicity="0..1" />
+    <End Role="b2_users" Type="Self.b2_users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2_section_info">
+        <PropertyRef Name="section_id" />
+      </Principal>
+      <Dependent Role="b2_users">
+        <PropertyRef Name="section" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_b2_users_role">
+    <End Role="b2_user_role" Type="Self.b2_user_role" Multiplicity="0..1" />
+    <End Role="b2_users" Type="Self.b2_users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="b2_user_role">
+        <PropertyRef Name="role_id" />
+      </Principal>
+      <Dependent Role="b2_users">
+        <PropertyRef Name="user_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="bwslb2Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="b2_building_info" EntityType="Self.b2_building_info" />
+    <EntitySet Name="b2_buyer_info" EntityType="Self.b2_buyer_info" />
+    <EntitySet Name="b2_company_info" EntityType="Self.b2_company_info" />
+    <EntitySet Name="b2_emp_basic" EntityType="Self.b2_emp_basic" />
+    <EntitySet Name="b2_process_info" EntityType="Self.b2_process_info" />
+    <EntitySet Name="b2_production_information" EntityType="Self.b2_production_information" />
+    <EntitySet Name="b2_section_info" EntityType="Self.b2_section_info" />
+    <EntitySet Name="b2_style_info" EntityType="Self.b2_style_info" />
+    <EntitySet Name="b2_user_role" EntityType="Self.b2_user_role" />
+    <EntitySet Name="b2_users" EntityType="Self.b2_users" />
+    <AssociationSet Name="FK_b2_building_info_b2_company_info" Association="Self.FK_b2_building_info_b2_company_info">
+      <End Role="b2_company_info" EntitySet="b2_company_info" />
+      <End Role="b2_building_info" EntitySet="b2_building_info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_b2_users_b2_building_info" Association="Self.FK_b2_users_b2_building_info">
+      <End Role="b2_building_info" EntitySet="b2_building_info" />
+      <End Role="b2_users" EntitySet="b2_users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_b2_style_info_b2_buyer_info" Association="Self.FK_b2_style_info_b2_buyer_info">
+      <End Role="b2_buyer_info" EntitySet="b2_buyer_info" />
+      <End Role="b2_style_info" EntitySet="b2_style_info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_b2_emp_basic_section" Association="Self.FK_b2_emp_basic_section">
+      <End Role="b2_section_info" EntitySet="b2_section_info" />
+      <End Role="b2_emp_basic" EntitySet="b2_emp_basic" />
+    </AssociationSet>
+    <AssociationSet Name="FK_b2_production_information_emp_id" Association="Self.FK_b2_production_information_emp_id">
+      <End Role="b2_emp_basic" EntitySet="b2_emp_basic" />
+      <End Role="b2_production_information" EntitySet="b2_production_information" />
+    </AssociationSet>
+    <AssociationSet Name="FK_b2_process_info_b2_section_info" Association="Self.FK_b2_process_info_b2_section_info">
+      <End Role="b2_section_info" EntitySet="b2_section_info" />
+      <End Role="b2_process_info" EntitySet="b2_process_info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_b2_process_info_b2_style_info" Association="Self.FK_b2_process_info_b2_style_info">
+      <End Role="b2_style_info" EntitySet="b2_style_info" />
+      <End Role="b2_process_info" EntitySet="b2_process_info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_b2_production_information_process" Association="Self.FK_b2_production_information_process">
+      <End Role="b2_process_info" EntitySet="b2_process_info" />
+      <End Role="b2_production_information" EntitySet="b2_production_information" />
+    </AssociationSet>
+    <AssociationSet Name="FK_b2_production_information_style" Association="Self.FK_b2_production_information_style">
+      <End Role="b2_style_info" EntitySet="b2_style_info" />
+      <End Role="b2_production_information" EntitySet="b2_production_information" />
+    </AssociationSet>
+    <AssociationSet Name="FK_b2_style_info_b2_section_info" Association="Self.FK_b2_style_info_b2_section_info">
+      <End Role="b2_section_info" EntitySet="b2_section_info" />
+      <End Role="b2_style_info" EntitySet="b2_style_info" />
+    </AssociationSet>
+    <AssociationSet Name="FK_b2_users_section" Association="Self.FK_b2_users_section">
+      <End Role="b2_section_info" EntitySet="b2_section_info" />
+      <End Role="b2_users" EntitySet="b2_users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_b2_users_role" Association="Self.FK_b2_users_role">
+      <End Role="b2_user_role" EntitySet="b2_user_role" />
+      <End Role="b2_users" EntitySet="b2_users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
