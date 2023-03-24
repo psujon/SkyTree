@@ -1,0 +1,1 @@
+﻿select * from b2_emp_basic where unit = 1 or unit is null and department = 1 or department is null and section = 5 or section is null and block = 1 or block is null and emp_cardno like '%%' or emp_cardno is null
